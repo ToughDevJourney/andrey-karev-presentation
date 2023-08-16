@@ -1,5 +1,5 @@
 import { Stage } from "react-konva";
-import PlayerLayer from "../../components/PlayerLayer";
+import PlayerLayer from "components/PlayerLayer";
 
 function App() {
   return (

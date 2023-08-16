@@ -2,12 +2,12 @@ import Konva from "konva";
 import * as React from "react";
 import { Layer, Stage } from "react-konva";
 import { useRef } from "react";
-import { initGIF } from "../../utils/konva";
+import { initGIF } from "utils/konva";
 
 function PlayerLayer() {
   const layerRef = useRef<Konva.Layer>(null);
 
-  const gifSrc = require("../../assets/mainCharacter.gif");
+  const gifSrc = require("assets/mainCharacter.gif");
 
   React.useEffect(() => {
     initGIF(gifSrc, layerRef.current!);
