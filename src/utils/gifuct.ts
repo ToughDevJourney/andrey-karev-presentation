@@ -1,3 +1,5 @@
+// Many thanks to https://github.com/luizcieslak for providing this code
+
 import { parseGIF, decompressFrames, ParsedFrame } from "gifuct-js";
 import Konva from "konva";
 
@@ -45,8 +47,8 @@ const drawPatch = (frame: ParsedFrame) => {
 
     if (
       !frameImageData ||
-      dims.width != frameImageData.width ||
-      dims.height != frameImageData.height
+      dims.width !== frameImageData.width ||
+      dims.height !== frameImageData.height
     ) {
       tempCanvas.width = dims.width;
       tempCanvas.height = dims.height;

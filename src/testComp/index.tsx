@@ -1,27 +1,16 @@
 import Konva from "konva";
 import * as React from "react";
-import gifuct from "./gifuct";
-import { Layer, Stage, Image } from "react-konva";
+import { Layer, Stage } from "react-konva";
 import { useRef } from "react";
+import { initGIF } from "../utils/konva";
 
 function App() {
-  const layerRef = useRef(null);
+  const layerRef = useRef<Konva.Layer>(null);
 
   const gifSrc = require("../assets/mainCharacter.gif");
 
   React.useEffect(() => {
-    const init = async () => {
-      const canvas1 = await gifuct(gifSrc, layerRef.current);
-      const image1 = new Konva.Image({
-        image: canvas1,
-      });
-
-      layerRef.current.add(image1);
-
-      layerRef.current.batchDraw();
-    };
-
-    init();
+    initGIF(gifSrc, layerRef.current!);
   }, [gifSrc, layerRef]);
 
   return (
