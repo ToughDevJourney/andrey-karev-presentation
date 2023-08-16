@@ -1,13 +1,12 @@
 import { parseGIF, decompressFrames, ParsedFrame } from "gifuct-js";
 import Konva from "konva";
 
-// user canvas
 const c = document.createElement("canvas");
 const ctx = c.getContext("2d");
-// gif patch canvas
+
 const tempCanvas = document.createElement("canvas");
 const tempCtx = tempCanvas.getContext("2d");
-// full gif canvas
+
 const gifCanvas = document.createElement("canvas");
 const gifCtx = gifCanvas.getContext("2d");
 
@@ -24,12 +23,9 @@ const loadGIF = async (gifURL: string) => {
 let loadedFrames: ParsedFrame[] = [];
 let frameIndex = 1;
 let playing = true;
-// let bEdgeDetect = false
-// let bInvert = false
-// let bGrayscale = false
+
 const pixelPercent = 100;
-// let loadedFrames
-// let frameIndex
+
 let frameImageData: ImageData;
 
 const renderGIF = (frames: ParsedFrame[]) => {
@@ -57,10 +53,8 @@ const drawPatch = (frame: ParsedFrame) => {
       frameImageData = tempCtx.createImageData(dims.width, dims.height);
     }
 
-    // set the patch data as an override
     frameImageData.data.set(frame.patch);
 
-    // draw the patch back over the canvas
     tempCtx.putImageData(frameImageData, 0, 0);
 
     gifCtx.drawImage(tempCanvas, dims.left, dims.top);
@@ -77,27 +71,11 @@ const manipulate = () => {
       gifCanvas.width,
       gifCanvas.height
     );
-    const other = gifCtx.createImageData(gifCanvas.width, gifCanvas.height);
 
-    // if (bEdgeDetect) {
-    //   imageData = edge(imageData.data, other)
-    // }
-
-    // if (bInvert) {
-    //   invert(imageData.data)
-    // }
-
-    // if (bGrayscale) {
-    //   grayscale(imageData.data)
-    // }
-
-    // do pixelation
     const pixelsX = 5 + Math.floor((pixelPercent / 100) * (c.width - 5));
     const pixelsY = (pixelsX * c.height) / c.width;
 
     if (pixelPercent != 100) {
-      // ctx.mozImageSmoothingEnabled = false
-      // ctx.webkitImageSmoothingEnabled = false
       ctx.imageSmoothingEnabled = false;
     }
 
@@ -110,26 +88,20 @@ const manipulate = () => {
 };
 
 const renderFrame = (layer: Konva.Layer) => {
-  // get the frame
   const frame = loadedFrames[frameIndex];
 
   const start = new Date().getTime();
 
   if (frame.disposalType === 2 && gifCtx) {
-    // gifCtx.clearRect(0, 0, c.width, c.height)
-    // see: https://github.com/matt-way/gifuct-js/issues/35
     const prevFrame = loadedFrames[frameIndex - 1];
     const { width, height, left, top } = prevFrame.dims;
     gifCtx.clearRect(left, top, width, height);
   }
 
-  // draw the patch
   drawPatch(frame);
 
-  // perform manipulation
   manipulate();
 
-  // update the frame index
   frameIndex++;
   if (frameIndex >= loadedFrames.length) {
     frameIndex = 0;
@@ -141,17 +113,15 @@ const renderFrame = (layer: Konva.Layer) => {
   layer.draw();
 
   if (playing) {
-    // delay the next gif frame
     setTimeout(function () {
       requestAnimationFrame(() => renderFrame(layer));
-      //renderFrame();
     }, Math.max(0, Math.floor(frame.delay - diff)));
   }
 };
 
 const gifuct = async (gifURL: string, layer: Konva.Layer) => {
   try {
-    const { gif, frames } = await loadGIF(gifURL);
+    const { frames } = await loadGIF(gifURL);
 
     renderGIF(frames);
 
