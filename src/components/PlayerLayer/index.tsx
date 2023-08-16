@@ -13,7 +13,7 @@ function PlayerLayer() {
     initGIF(gifSrc, layerRef.current!);
   }, [gifSrc, layerRef]);
 
-  return <Layer ref={layerRef} />;
+  return <Layer ref={layerRef} x={window.innerWidth / 2} y={400} />;
 }
 
 export default PlayerLayer;
