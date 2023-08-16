@@ -1,4 +1,4 @@
-import TestComp from "./testComp";
+import TestComp from "./pages/MainPage";
 
 function App() {
   return (
