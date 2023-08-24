@@ -1,7 +1,7 @@
-import { ReactComponent as BaseBackground1 } from "assets/BG1.svg";
-import { ReactComponent as BaseBackground2 } from "assets/BG2.svg";
-import { ReactComponent as BaseBackground3 } from "assets/BG3.svg";
-import { ReactComponent as BaseBackground4 } from "assets/BG4.svg";
+import { ReactComponent as BaseBackground1 } from "assets/background1.svg";
+import { ReactComponent as BaseBackground2 } from "assets/background2.svg";
+import { ReactComponent as BaseBackground3 } from "assets/background3.svg";
+import { ReactComponent as BaseBackground4 } from "assets/background4.svg";
 import styled, { css } from "styled-components";
 
 const BackgroundLayer: React.FC = () => {
@@ -16,8 +16,12 @@ const BackgroundLayer: React.FC = () => {
 };
 
 const BackgroundContainer = styled.div`
-  position: relative;
-  height: 100%;
+  position: fixed;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+
+  height: 100vh;
 `;
 
 const commonBackgroundStyles = css`

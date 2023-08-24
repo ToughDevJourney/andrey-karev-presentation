@@ -1,11 +1,13 @@
 import PlayerLayer from "components/PlayerLayer";
 import BackgroundLayer from "components/BackgroundLayer";
 import styled from "styled-components";
+import LandLayer from "components/LandLayer";
 
 const MainPage: React.FC = () => {
   return (
     <MainPageContainer>
       <PlayerLayer />
+      <LandLayer />
       <BackgroundLayer />
     </MainPageContainer>
   );
@@ -14,9 +16,8 @@ const MainPage: React.FC = () => {
 export default MainPage;
 
 const MainPageContainer = styled.div`
-  position: relative;
-
-  height: 100vh;
+  display: flex;
+  justify-content: center;
 `;
 
 // Вывести картинку
