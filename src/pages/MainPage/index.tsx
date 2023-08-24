@@ -1,27 +1,23 @@
-import { Stage } from "react-konva";
 import PlayerLayer from "components/PlayerLayer";
-import useImage from "use-image";
-import bg1 from "assets/BG1.svg";
 import BackgroundLayer from "components/BackgroundLayer";
+import styled from "styled-components";
 
 const MainPage: React.FC = () => {
-  // навесить ивент лисенеры для ресайза
-  // сделать фиксированный размер канваса и приклеить его к низу страницы
-
   return (
-    <Stage
-      width={window.innerWidth}
-      height={window.innerHeight}
-      y={window.innerHeight}
-      x={window.innerWidth / 2}
-    >
-      <BackgroundLayer />
+    <MainPageContainer>
       <PlayerLayer />
-    </Stage>
+      <BackgroundLayer />
+    </MainPageContainer>
   );
 };
 
 export default MainPage;
+
+const MainPageContainer = styled.div`
+  position: relative;
+
+  height: 100vh;
+`;
 
 // Вывести картинку
 // Добавить передвижение

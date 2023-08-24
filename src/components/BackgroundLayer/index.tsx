@@ -1,45 +1,45 @@
-import { Stage, Image, Layer } from "react-konva";
-import PlayerLayer from "components/PlayerLayer";
-import useImage from "use-image";
-import bg2 from "assets/BG2.svg";
-import bg1 from "assets/BG1.svg";
-import { useEffect, useRef, useState } from "react";
+import { ReactComponent as BaseBackground1 } from "assets/BG1.svg";
+import { ReactComponent as BaseBackground2 } from "assets/BG2.svg";
+import { ReactComponent as BaseBackground3 } from "assets/BG3.svg";
+import { ReactComponent as BaseBackground4 } from "assets/BG4.svg";
+import styled, { css } from "styled-components";
 
 const BackgroundLayer: React.FC = () => {
-  // const layerRef = useRef(null);
-  const scale = 18;
-
-  // const [layerOffset, setLayerOffset] = useState(0);
-
-  const [bg1Src] = useImage(bg1);
-  const [bg2Src] = useImage(bg2);
-  // //ЗАКОНЧИЛ НА ОФСЕТЕ
-
-  // // if (!bg1Src) return;
-
-  // useEffect(() => {
-  //   // console.log(layerRef.current.getWidth());
-
-  //   if (layerRef?.current?.getWidth() && bg2Src?.width) {
-  //     setLayerOffset(
-  //       (layerRef?.current?.getWidth() - bg2Src.width) / (2 * scale)
-  //     );
-  //     console.log();
-  //   }
-  // }, [layerRef, bg2Src?.width]);
-
   return (
-    <Layer
-      scaleX={scale}
-      scaleY={scale}
-      y={-bg1Src?.height * scale}
-      x={(-bg1Src?.width * scale) / 2}
-    >
-      <Image image={bg1Src} />
-      <Image image={bg2Src} />
-    </Layer>
+    <BackgroundContainer>
+      <Background1 />
+      <Background2 />
+      <Background3 />
+      <Background4 />
+    </BackgroundContainer>
   );
 };
+
+const BackgroundContainer = styled.div`
+  position: relative;
+  height: 100%;
+`;
+
+const commonBackgroundStyles = css`
+  position: absolute;
+  height: 100%;
+`;
+
+const Background1 = styled(BaseBackground1)`
+  ${commonBackgroundStyles};
+`;
+
+const Background2 = styled(BaseBackground2)`
+  ${commonBackgroundStyles};
+`;
+
+const Background3 = styled(BaseBackground3)`
+  ${commonBackgroundStyles};
+`;
+
+const Background4 = styled(BaseBackground4)`
+  ${commonBackgroundStyles};
+`;
 
 export default BackgroundLayer;
 

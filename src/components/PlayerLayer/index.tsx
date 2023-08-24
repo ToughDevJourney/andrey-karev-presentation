@@ -1,31 +1,29 @@
-import Konva from "konva";
-import * as React from "react";
-import { Layer, Stage } from "react-konva";
-import { useEffect, useRef } from "react";
-import { initGIF } from "utils/konva";
-import gifSrc from "assets/mainCharacter.gif";
-import useImage from "use-image";
+import character from "assets/mainCharacter.gif";
+import styled from "styled-components";
 
 function PlayerLayer() {
-  const layerRef = useRef<Konva.Layer>(null);
-  const [x, setX] = React.useState(0);
+  // const layerRef = useRef<Konva.Layer>(null);
+  // const [x, setX] = React.useState(0);
 
-  // const [imasd] = useImage(gifSrc);
+  // // const [imasd] = useImage(gifSrc);
 
-  const clickHandler = () => {
-    setX((oldX) => oldX + 5);
-  };
+  // const clickHandler = () => {
+  //   setX((oldX) => oldX + 5);
+  // };
 
-  useEffect(() => {
-    initGIF(gifSrc, layerRef.current!);
-  }, [x]);
+  // useEffect(() => {
+  //   initGIF(gifSrc, layerRef.current!);
+  // }, [x]);
 
-  React.useEffect(() => {
-    console.log(layerRef?.current?.getHeight());
-  }, [layerRef]);
-
-  return <Layer ref={layerRef} onClick={clickHandler} />;
+  return <PlayerImage src={character} alt="" />;
 }
+
+const PlayerImage = styled.img`
+  position: absolute;
+  bottom: 0;
+
+  z-index: 10;
+`;
 
 export default PlayerLayer;
 
