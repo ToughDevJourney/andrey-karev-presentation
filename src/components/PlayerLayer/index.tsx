@@ -1,13 +1,13 @@
-import character from "assets/mainCharacter.gif";
+import playerImage from "assets/player.gif";
 import styled from "styled-components";
 
 function PlayerLayer() {
-  return <PlayerImage src={character} alt="" />;
+  return <PlayerImage src={playerImage} alt="" />;
 }
 
 const PlayerImage = styled.img`
   position: fixed;
-  bottom: 12px;
+  bottom: 112px;
 
   // вынести z-index-ы в константы
   z-index: 100;
