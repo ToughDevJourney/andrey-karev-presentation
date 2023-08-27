@@ -13,7 +13,7 @@ interface LandLayerProps {
 
 const LandLayer: React.FC<LandLayerProps> = ({ playerX }) => {
   return (
-    <LandLayerContainer playerX={playerX}>
+    <LandLayerContainer $playerX={playerX}>
       <LianasSVG />
       <StatueImage src={statueImage} alt="" />
       <TotemAboutImage src={totemAboutImage} alt="" />
@@ -25,15 +25,17 @@ const LandLayer: React.FC<LandLayerProps> = ({ playerX }) => {
   );
 };
 
-const LandLayerContainer = styled.div<{ playerX: number }>`
+const LandLayerContainer = styled.div.attrs<{ $playerX: number }>(({ $playerX }) => ({
+  style: {
+    transform: `translateX(${$playerX}px)`,
+  },
+}))`
   display: flex;
   justify-content: center;
   position: fixed;
   bottom: 0;
   z-index: 10;
   height: 780px;
-
-  transform: ${({ playerX }) => `translateX(${playerX}px)`};
 `;
 
 const LandSVG = styled(BaseLandSVG)`

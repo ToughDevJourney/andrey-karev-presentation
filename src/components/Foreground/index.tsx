@@ -1,21 +1,30 @@
 import { ReactComponent as BaseRightBorderSVG } from "assets/rightBorder.svg";
 import { ReactComponent as BaseLeftBorderSVG } from "assets/leftBorder.svg";
 import styled, { css } from "styled-components";
+import { useEffect } from "react";
 
 interface ForegroundLayerProps {
   playerX: number;
 }
 
 const ForegroundLayer: React.FC<ForegroundLayerProps> = ({ playerX }) => {
+  useEffect(() => {
+    console.log("asdadad");
+  }, [playerX]);
+
   return (
-    <ForegroundLayerContainer playerX={playerX}>
+    <ForegroundLayerContainer $playerX={playerX}>
       <LeftBorderSVG />
       <RightBorderSVG />
     </ForegroundLayerContainer>
   );
 };
 
-const ForegroundLayerContainer = styled.div<{ playerX: number }>`
+const ForegroundLayerContainer = styled.div.attrs<{ $playerX: number }>(({ $playerX }) => ({
+  style: {
+    transform: `translateX(${$playerX}px)`,
+  },
+}))`
   display: flex;
   justify-content: center;
   position: fixed;
@@ -23,8 +32,6 @@ const ForegroundLayerContainer = styled.div<{ playerX: number }>`
   // Вынести в константу
   z-index: 1000;
   height: 100vh;
-
-  transform: ${({ playerX }) => `translateX(${playerX}px)`};
 `;
 
 // возможно, стоит заменить это на константы
