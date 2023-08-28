@@ -4,13 +4,17 @@ import { ReactComponent as BaseBackgroundSVG3 } from "assets/background3.svg";
 import { ReactComponent as BaseBackgroundSVG4 } from "assets/background4.svg";
 import styled, { css } from "styled-components";
 
-const BackgroundLayer: React.FC = () => {
+interface BackgroundLayerProps {
+  playerX: number;
+}
+
+const BackgroundLayer: React.FC<BackgroundLayerProps> = ({ playerX }) => {
   return (
     <BackgroundLayerContainer>
-      <BackgroundSVG1 />
-      <BackgroundSVG2 />
-      <BackgroundSVG3 />
-      <BackgroundSVG4 />
+      <BackgroundSVG1 $playerX={playerX} />
+      <BackgroundSVG2 $playerX={playerX} />
+      <BackgroundSVG3 $playerX={playerX} />
+      <BackgroundSVG4 $playerX={playerX} />
     </BackgroundLayerContainer>
   );
 };
@@ -29,19 +33,36 @@ const commonBackgroundStyles = css`
   height: 100%;
 `;
 
-const BackgroundSVG1 = styled(BaseBackgroundSVG1)`
+// паровозы из одинаковых из аттрибутов можно вынести в функцию
+const BackgroundSVG1 = styled(BaseBackgroundSVG1).attrs<{ $playerX: number }>(({ $playerX }) => ({
+  style: {
+    transform: `translateX(${$playerX}px)`,
+  },
+}))`
   ${commonBackgroundStyles};
 `;
 
-const BackgroundSVG2 = styled(BaseBackgroundSVG2)`
+const BackgroundSVG2 = styled(BaseBackgroundSVG2).attrs<{ $playerX: number }>(({ $playerX }) => ({
+  style: {
+    transform: `translateX(${$playerX}px)`,
+  },
+}))`
   ${commonBackgroundStyles};
 `;
 
-const BackgroundSVG3 = styled(BaseBackgroundSVG3)`
+const BackgroundSVG3 = styled(BaseBackgroundSVG3).attrs<{ $playerX: number }>(({ $playerX }) => ({
+  style: {
+    transform: `translateX(${$playerX}px)`,
+  },
+}))`
   ${commonBackgroundStyles};
 `;
 
-const BackgroundSVG4 = styled(BaseBackgroundSVG4)`
+const BackgroundSVG4 = styled(BaseBackgroundSVG4).attrs<{ $playerX: number }>(({ $playerX }) => ({
+  style: {
+    transform: `translateX(${$playerX}px)`,
+  },
+}))`
   ${commonBackgroundStyles};
 `;
 

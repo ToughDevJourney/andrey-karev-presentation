@@ -5,6 +5,7 @@ import totemAboutImage from "assets/totemAbout.gif";
 import totemContactsImage from "assets/totemContacts.gif";
 import totemExperienceImage from "assets/totemExperience.gif";
 import totemStackImage from "assets/totemStack.gif";
+import { playerSpeed } from "constants/player";
 import styled, { css } from "styled-components";
 
 interface LandLayerProps {
@@ -13,7 +14,7 @@ interface LandLayerProps {
 
 const LandLayer: React.FC<LandLayerProps> = ({ playerX }) => {
   return (
-    <LandLayerContainer $playerX={playerX}>
+    <LandLayerContainer $playerX={playerX * playerSpeed}>
       <LianasSVG />
       <StatueImage src={statueImage} alt="" />
       <TotemAboutImage src={totemAboutImage} alt="" />

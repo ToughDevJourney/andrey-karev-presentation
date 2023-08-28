@@ -17,8 +17,8 @@ const MainPage: React.FC = () => {
     stopAnimation();
 
     // вынести скорость в константы
-    if (playerState === "moveLeft") animate(() => setPlayerX((oldPlayerX) => oldPlayerX + 5));
-    if (playerState === "moveRight") animate(() => setPlayerX((oldPlayerX) => oldPlayerX - 5));
+    if (playerState === "moveLeft") animate(() => setPlayerX((oldPlayerX) => oldPlayerX + 1));
+    if (playerState === "moveRight") animate(() => setPlayerX((oldPlayerX) => oldPlayerX - 1));
   }, [animate, playerState, stopAnimation]);
 
   return (
@@ -26,7 +26,7 @@ const MainPage: React.FC = () => {
       <ForegroundLayer playerX={playerX} />
       <PlayerLayer playerState={playerState} />
       <LandLayer playerX={playerX} />
-      <BackgroundLayer />
+      <BackgroundLayer playerX={playerX} />
     </MainPageContainer>
   );
 };

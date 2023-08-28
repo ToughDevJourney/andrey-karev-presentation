@@ -1,6 +1,7 @@
 import { ReactComponent as BaseRightBorderSVG } from "assets/rightBorder.svg";
 import { ReactComponent as BaseLeftBorderSVG } from "assets/leftBorder.svg";
 import styled, { css } from "styled-components";
+import { playerSpeed } from "constants/player";
 
 interface ForegroundLayerProps {
   playerX: number;
@@ -8,7 +9,7 @@ interface ForegroundLayerProps {
 
 const ForegroundLayer: React.FC<ForegroundLayerProps> = ({ playerX }) => {
   return (
-    <ForegroundLayerContainer $playerX={playerX}>
+    <ForegroundLayerContainer $playerX={playerX * playerSpeed}>
       <LeftBorderSVG />
       <RightBorderSVG />
     </ForegroundLayerContainer>
