@@ -16,14 +16,15 @@ const MainPage: React.FC = () => {
   useEffect(() => {
     stopAnimation();
 
-    if (playerState === "moveLeft") animate(() => setPlayerX((oldPlayerX) => oldPlayerX + 4));
-    if (playerState === "moveRight") animate(() => setPlayerX((oldPlayerX) => oldPlayerX - 4));
+    // вынести скорость в константы
+    if (playerState === "moveLeft") animate(() => setPlayerX((oldPlayerX) => oldPlayerX + 5));
+    if (playerState === "moveRight") animate(() => setPlayerX((oldPlayerX) => oldPlayerX - 5));
   }, [animate, playerState, stopAnimation]);
 
   return (
     <MainPageContainer>
       <ForegroundLayer playerX={playerX} />
-      <PlayerLayer />
+      <PlayerLayer playerState={playerState} />
       <LandLayer playerX={playerX} />
       <BackgroundLayer />
     </MainPageContainer>
@@ -38,6 +39,9 @@ const MainPageContainer = styled.div`
 `;
 
 // Вывести картинку
+// Анимировать фон
 // Добавить передвижение
 // Добавить логику вывода инфы
+// Добавить плашку с обучением
+// Добавить локализацию
 // Выкатить на vps

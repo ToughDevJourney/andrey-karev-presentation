@@ -1,13 +1,14 @@
 import { useCallback, useEffect, useState } from "react";
 
-type PlayerStates = "idle" | "moveRight" | "moveLeft";
+export type PlayerStates = "idleRight" | "idleLeft" | "moveRight" | "moveLeft";
 
 const usePlayerState = () => {
-  const [playerState, setPlayerState] = useState<PlayerStates>("idle");
+  const [playerState, setPlayerState] = useState<PlayerStates>("idleRight");
 
   const movePlayerRight = () => setPlayerState("moveRight");
   const movePlayerLeft = () => setPlayerState("moveLeft");
-  const stopPlayer = () => setPlayerState("idle");
+  const stopPlayerRight = () => setPlayerState("idleRight");
+  const stopPlayerLeft = () => setPlayerState("idleLeft");
 
   const keyDownHandler = useCallback((event: KeyboardEvent) => {
     if (["KeyA", "ArrowLeft"].includes(event.code)) return movePlayerLeft();
@@ -16,8 +17,8 @@ const usePlayerState = () => {
 
   const keyUpHandler = useCallback(
     (event: KeyboardEvent) => {
-      if (["KeyA", "ArrowLeft"].includes(event.code) && playerState === "moveLeft") return stopPlayer();
-      if (["KeyD", "ArrowRight"].includes(event.code) && playerState === "moveRight") return stopPlayer();
+      if (["KeyA", "ArrowLeft"].includes(event.code) && playerState === "moveLeft") return stopPlayerLeft();
+      if (["KeyD", "ArrowRight"].includes(event.code) && playerState === "moveRight") return stopPlayerRight();
     },
     [playerState],
   );

@@ -9,13 +9,13 @@ const useRequestAnimationFrame = () => {
     requestAnimationFrameIdRef.current = requestAnimationFrame(() => animate(animationHandler));
   }, []);
 
-  const stopAnimation = () => {
+  const stopAnimation = useCallback(() => {
     cancelAnimationFrame(requestAnimationFrameIdRef.current);
-  };
+  }, []);
 
   useEffect(() => {
     return stopAnimation;
-  }, [animate]);
+  }, [stopAnimation]);
 
   return { animate, stopAnimation };
 };

@@ -1,17 +1,12 @@
 import { ReactComponent as BaseRightBorderSVG } from "assets/rightBorder.svg";
 import { ReactComponent as BaseLeftBorderSVG } from "assets/leftBorder.svg";
 import styled, { css } from "styled-components";
-import { useEffect } from "react";
 
 interface ForegroundLayerProps {
   playerX: number;
 }
 
 const ForegroundLayer: React.FC<ForegroundLayerProps> = ({ playerX }) => {
-  useEffect(() => {
-    console.log("asdadad");
-  }, [playerX]);
-
   return (
     <ForegroundLayerContainer $playerX={playerX}>
       <LeftBorderSVG />
