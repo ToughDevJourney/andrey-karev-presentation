@@ -11,15 +11,30 @@ interface BackgroundLayerProps {
 const BackgroundLayer: React.FC<BackgroundLayerProps> = ({ playerX }) => {
   return (
     <BackgroundLayerContainer>
-      <BackgroundSVG1 $playerX={playerX} />
-      <BackgroundSVG2 $playerX={playerX} />
-      <BackgroundSVG3 $playerX={playerX} />
-      <BackgroundSVG4 $playerX={playerX} />
+      <BackgroundContainer $playerX={playerX}>
+        <BackgroundSVG1 />
+      </BackgroundContainer>
+      <BackgroundContainer $playerX={playerX * 2}>
+        <BackgroundSVG2 />
+      </BackgroundContainer>
+      <BackgroundContainer $playerX={playerX * 3}>
+        <BackgroundSVG3 />
+      </BackgroundContainer>
+      <BackgroundContainer $playerX={playerX * 4}>
+        <BackgroundSVG4 />
+      </BackgroundContainer>
     </BackgroundLayerContainer>
   );
 };
 
-const BackgroundLayerContainer = styled.div`
+const BackgroundLayerContainer = styled.div``;
+
+// wrapping svg images with transparency in divs highly improves performance
+const BackgroundContainer = styled.div.attrs<{ $playerX: number }>(({ $playerX }) => ({
+  style: {
+    transform: `translateX(${$playerX}px)`,
+  },
+}))`
   position: fixed;
   bottom: 0;
   display: flex;
@@ -33,44 +48,20 @@ const commonBackgroundStyles = css`
   height: 100%;
 `;
 
-// паровозы из одинаковых из аттрибутов можно вынести в функцию
-const BackgroundSVG1 = styled(BaseBackgroundSVG1).attrs<{ $playerX: number }>(({ $playerX }) => ({
-  style: {
-    transform: `translateX(${$playerX}px)`,
-  },
-}))`
+const BackgroundSVG1 = styled(BaseBackgroundSVG1)`
   ${commonBackgroundStyles};
 `;
 
-const BackgroundSVG2 = styled(BaseBackgroundSVG2).attrs<{ $playerX: number }>(({ $playerX }) => ({
-  style: {
-    transform: `translateX(${$playerX}px)`,
-  },
-}))`
+const BackgroundSVG2 = styled(BaseBackgroundSVG2)`
   ${commonBackgroundStyles};
 `;
 
-const BackgroundSVG3 = styled(BaseBackgroundSVG3).attrs<{ $playerX: number }>(({ $playerX }) => ({
-  style: {
-    transform: `translateX(${$playerX}px)`,
-  },
-}))`
+const BackgroundSVG3 = styled(BaseBackgroundSVG3)`
   ${commonBackgroundStyles};
 `;
 
-const BackgroundSVG4 = styled(BaseBackgroundSVG4).attrs<{ $playerX: number }>(({ $playerX }) => ({
-  style: {
-    transform: `translateX(${$playerX}px)`,
-  },
-}))`
+const BackgroundSVG4 = styled(BaseBackgroundSVG4)`
   ${commonBackgroundStyles};
 `;
 
 export default BackgroundLayer;
-
-// Вывести картинку
-// Добавить передвижение
-// Добавить логику вывода инфы
-// Выкатить на vps
-
-// Нет необходимости делать центрирование, потому что другие элементы все равно будут выводиться
