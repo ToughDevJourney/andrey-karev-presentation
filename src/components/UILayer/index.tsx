@@ -1,24 +1,36 @@
-import styled from "styled-components";
+import { useState } from "react";
+import WelcomeText from "./WelcomeText";
+import ContactsTotemText from "./ContactsTotemText";
+import AboutTotemText from "./AboutTotemText";
+import ExperienceTotemText from "./ExperienceTotemText";
+import MyTechStackTotemText from "./MyTechStackTotemText";
 
-interface UILayerProps {}
+interface UILayerProps {
+  playerX: number;
+  playerDidWalkLeft: boolean;
+  playerDidWalkRight: boolean;
+}
 
-const UILayer: React.FC<UILayerProps> = () => {
+const UILayer: React.FC<UILayerProps> = ({ playerX, playerDidWalkLeft, playerDidWalkRight }) => {
+  const [isShowWelcomeText, setIsShowWelcomeText] = useState(true);
+
+  if (isShowWelcomeText)
+    return (
+      <WelcomeText
+        playerDidWalkLeft={playerDidWalkLeft}
+        playerDidWalkRight={playerDidWalkRight}
+        hideWelcomeText={() => setIsShowWelcomeText(false)}
+      />
+    );
+
   return (
-    <UILayerContainer>
-      <div>hello</div>
-    </UILayerContainer>
+    <>
+      <ContactsTotemText playerX={playerX} />
+      <AboutTotemText playerX={playerX} />
+      <ExperienceTotemText playerX={playerX} />
+      <MyTechStackTotemText playerX={playerX} />
+    </>
   );
 };
-
-const UILayerContainer = styled.div`
-  z-index: 10000;
-  position: absolute;
-  top: 40px;
-  bottom: 300px;
-  min-width: 50vw;
-  background-color: rgba(0, 0, 0, 0.4);
-  padding: 24px;
-  color: white;
-`;
 
 export default UILayer;

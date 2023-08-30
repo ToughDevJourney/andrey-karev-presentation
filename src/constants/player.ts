@@ -1,1 +1,1 @@
-export const playerSpeed = 5;
+export const playerSpeed = 7;

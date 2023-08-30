@@ -10,16 +10,24 @@ import UILayer from "components/UILayer";
 
 const MainPage: React.FC = () => {
   const { animate, stopAnimation } = useRequestAnimationFrame();
-
-  const [playerX, setPlayerX] = useState(0);
   const playerState = usePlayerState();
+
+  const [playerX, setPlayerX] = useState(-300);
+  const [playerDidWalkLeft, setPlayerDidWalkLeft] = useState(false);
+  const [playerDidWalkRight, setPlayerDidWalkRight] = useState(false);
 
   const handlePlayerMovement = useCallback(
     (playerState: PlayerStates) => {
       stopAnimation();
 
-      if (playerState === "moveLeft") animate(() => setPlayerX((oldPlayerX) => (oldPlayerX <= 450 ? oldPlayerX + 1 : oldPlayerX)));
-      if (playerState === "moveRight") animate(() => setPlayerX((oldPlayerX) => (oldPlayerX >= -450 ? oldPlayerX - 1 : oldPlayerX)));
+      if (playerState === "moveLeft") {
+        setPlayerDidWalkLeft(true);
+        animate(() => setPlayerX((oldPlayerX) => (oldPlayerX <= 300 ? oldPlayerX + 1 : oldPlayerX)));
+      }
+      if (playerState === "moveRight") {
+        setPlayerDidWalkRight(true);
+        animate(() => setPlayerX((oldPlayerX) => (oldPlayerX >= -300 ? oldPlayerX - 1 : oldPlayerX)));
+      }
     },
     [animate, stopAnimation],
   );
@@ -30,7 +38,7 @@ const MainPage: React.FC = () => {
 
   return (
     <MainPageContainer>
-      {/* <UILayer /> */}
+      <UILayer playerX={playerX} playerDidWalkLeft={playerDidWalkLeft} playerDidWalkRight={playerDidWalkRight} />
       <ForegroundLayer playerX={playerX} />
       <PlayerLayer playerState={playerState} />
       <LandLayer playerX={playerX} />
@@ -49,8 +57,10 @@ const MainPageContainer = styled.div`
 // Вывести картинку (Добавить партикли и прозрачный свг сверху)
 // Анимировать фон+
 // Добавить передвижение+
+// Добавить подсказку "Найдено тотемов"
+// Добавить достижение
+// Заменить иконки
 // Выкатить z-index-ы в константы
 // Добавить логику вывода инфы
 // Добавить плашку с обучением
-// Добавить локализацию
 // Выкатить на vps

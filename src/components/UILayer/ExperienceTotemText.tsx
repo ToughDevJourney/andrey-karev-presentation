@@ -1,0 +1,61 @@
+import { playerSpeed } from "constants/player";
+import { experienceTotem } from "constants/totems";
+import styled from "styled-components";
+import DialogContainer from "uiKit/DialogContainer";
+import { checkIsElementsCollide } from "utils/common";
+
+interface ExperienceTotemTextProps {
+  playerX: number;
+}
+
+const ExperienceTotemText: React.FC<ExperienceTotemTextProps> = ({ playerX }) => {
+  //Радиус Вынести в константу
+  if (!checkIsElementsCollide(-playerX * playerSpeed, experienceTotem.xPos, 100)) return;
+
+  return (
+    <DialogContainer>
+      <ExperienceTotemTextContainer>
+        <h1>MY EXPERIENCE</h1>
+        <p>I have 4+ years experience with React.</p>
+        <ExperienceTextWrapper>
+          <ExperienceTextContainer>
+            <h4>JANUARY 2023 — JULY 2023</h4>
+            <p>Role: Frontend Developer</p>
+            <p>Project: A startup company. Creation of a streaming platform with the possibility of monetization through cryptocurrency.</p>
+          </ExperienceTextContainer>
+          <ExperienceTextContainer>
+            <h4>JUNE 2022 — DECEMBER 2022</h4>
+            <p>Role: Frontend Developer</p>
+            <p>Project: Delivery service for meals and flowers. Separate applications for restaurants and orders-couriers management.</p>
+          </ExperienceTextContainer>
+          <ExperienceTextContainer>
+            <h4>JUNE 2019 — MAY 2022</h4>
+            <p>Role: Frontend Developer</p>
+            <p>Project: Outsorce company, The largest Russian banks with innovative ideas and tasks.</p>
+          </ExperienceTextContainer>
+        </ExperienceTextWrapper>
+      </ExperienceTotemTextContainer>
+    </DialogContainer>
+  );
+};
+
+const ExperienceTotemTextContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  height: 100%;
+`;
+
+const ExperienceTextWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+`;
+
+const ExperienceTextContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+`;
+
+export default ExperienceTotemText;

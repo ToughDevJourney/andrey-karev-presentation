@@ -8,6 +8,8 @@ interface BackgroundLayerProps {
   playerX: number;
 }
 
+// NOTE: wrapping svg images with transparency in divs highly improves performance
+
 const BackgroundLayer: React.FC<BackgroundLayerProps> = ({ playerX }) => {
   return (
     <BackgroundLayerContainer>
@@ -29,7 +31,6 @@ const BackgroundLayer: React.FC<BackgroundLayerProps> = ({ playerX }) => {
 
 const BackgroundLayerContainer = styled.div``;
 
-// wrapping svg images with transparency in divs highly improves performance
 const BackgroundContainer = styled.div.attrs<{ $playerX: number }>(({ $playerX }) => ({
   style: {
     transform: `translateX(${$playerX}px)`,

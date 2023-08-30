@@ -1,10 +1,7 @@
 import { ReactComponent as BaseLandSVG } from "assets/land.svg";
 import { ReactComponent as BaseLianasSVG } from "assets/lianas.svg";
 import statueImage from "assets/statue.gif";
-import totemAboutImage from "assets/totemAbout.gif";
-import totemContactsImage from "assets/totemContacts.gif";
-import totemExperienceImage from "assets/totemExperience.gif";
-import totemStackImage from "assets/totemStack.gif";
+import TotemsList from "./TotemsList";
 import { playerSpeed } from "constants/player";
 import styled, { css } from "styled-components";
 
@@ -17,10 +14,7 @@ const LandLayer: React.FC<LandLayerProps> = ({ playerX }) => {
     <LandLayerContainer $playerX={playerX * playerSpeed}>
       <LianasSVG />
       <StatueImage src={statueImage} alt="" />
-      <TotemAboutImage src={totemAboutImage} alt="" />
-      <TotemContactsImage src={totemContactsImage} alt="" />
-      <TotemExperienceImage src={totemExperienceImage} alt="" />
-      <TotemStackImage src={totemStackImage} alt="" />
+      <TotemsList />
       <LandSVG />
     </LandLayerContainer>
   );
@@ -57,30 +51,6 @@ const commonLandStyles = css`
 
 const StatueImage = styled.img`
   ${commonLandStyles};
-`;
-
-const TotemAboutImage = styled.img`
-  ${commonLandStyles};
-
-  transform: translateX(-1794px);
-`;
-
-const TotemContactsImage = styled.img`
-  ${commonLandStyles};
-
-  transform: translateX(-1120px);
-`;
-
-const TotemExperienceImage = styled.img`
-  ${commonLandStyles};
-
-  transform: translateX(1020px);
-`;
-
-const TotemStackImage = styled.img`
-  ${commonLandStyles};
-
-  transform: translateX(1900px);
 `;
 
 export default LandLayer;
