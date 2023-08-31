@@ -5,8 +5,8 @@ interface DialogContainerProps {
   children: ReactNode;
 }
 
-const DialogContainer: React.FC<DialogContainerProps> = ({ children }) => {
-  return <DialogContainerContainer>{children}</DialogContainerContainer>;
+const DialogContainer: React.FC<DialogContainerProps> = ({ children, ...props }) => {
+  return <DialogContainerContainer {...props}>{children}</DialogContainerContainer>;
 };
 
 const DialogContainerContainer = styled.div`

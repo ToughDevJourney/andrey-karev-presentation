@@ -1,16 +1,24 @@
 import { playerSpeed } from "constants/player";
-import { techStackTotem } from "constants/totems";
+import { TotemName, techStackTotem } from "constants/totems";
+import { useEffect } from "react";
 import styled from "styled-components";
 import DialogContainer from "uiKit/DialogContainer";
 import { checkIsElementsCollide } from "utils/common";
 
 interface MyTechStackTotemTextProps {
   playerX: number;
+  handleVisitTotem: (totemName: TotemName) => void;
 }
 
-const MyTechStackTotemText: React.FC<MyTechStackTotemTextProps> = ({ playerX }) => {
+const MyTechStackTotemText: React.FC<MyTechStackTotemTextProps> = ({ playerX, handleVisitTotem }) => {
   //Радиус Вынести в константу
-  if (!checkIsElementsCollide(-playerX * playerSpeed, techStackTotem.xPos, 100)) return;
+  const isDiplayTotemText = checkIsElementsCollide(-playerX * playerSpeed, techStackTotem.xPos, 100);
+
+  useEffect(() => {
+    if (isDiplayTotemText) handleVisitTotem(techStackTotem.name);
+  }, [handleVisitTotem, isDiplayTotemText]);
+
+  if (!isDiplayTotemText) return;
 
   return (
     <DialogContainer>

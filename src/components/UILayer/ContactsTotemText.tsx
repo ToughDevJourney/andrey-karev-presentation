@@ -1,6 +1,7 @@
 import { contacts } from "constants/contacts";
 import { playerSpeed } from "constants/player";
-import { contactsTotem } from "constants/totems";
+import { TotemName, contactsTotem } from "constants/totems";
+import { useEffect } from "react";
 import styled from "styled-components";
 import DialogContainer from "uiKit/DialogContainer";
 import Link from "uiKit/ExternalLink";
@@ -8,18 +9,25 @@ import { checkIsElementsCollide } from "utils/common";
 
 interface ContactsTotemTextProps {
   playerX: number;
+  handleVisitTotem: (totemName: TotemName) => void;
 }
 
 const contactElementsList = contacts.map((contact) => (
-  <div>
+  <div key={contact.label}>
     <span>{contact.label}: </span>
     <Link href={contact.link}>{contact.displayName}</Link>
   </div>
 ));
 
-const ContactsTotemText: React.FC<ContactsTotemTextProps> = ({ playerX }) => {
+const ContactsTotemText: React.FC<ContactsTotemTextProps> = ({ playerX, handleVisitTotem }) => {
   //Радиус Вынести в константу
-  if (!checkIsElementsCollide(-playerX * playerSpeed, contactsTotem.xPos, 100)) return;
+  const isDiplayTotemText = checkIsElementsCollide(-playerX * playerSpeed, contactsTotem.xPos, 100);
+
+  useEffect(() => {
+    if (isDiplayTotemText) handleVisitTotem(contactsTotem.name);
+  }, [handleVisitTotem, isDiplayTotemText]);
+
+  if (!isDiplayTotemText) return;
 
   return (
     <DialogContainer>

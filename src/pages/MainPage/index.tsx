@@ -7,12 +7,14 @@ import { useCallback, useEffect, useState } from "react";
 import useRequestAnimationFrame from "hooks/useRequestAnimationFrame";
 import usePlayerState, { PlayerStates } from "hooks/usePlayerState";
 import UILayer from "components/UILayer";
+import useAchievements from "hooks/useAchievements";
 
 const MainPage: React.FC = () => {
   const { animate, stopAnimation } = useRequestAnimationFrame();
   const playerState = usePlayerState();
+  const abc = useAchievements();
 
-  const [playerX, setPlayerX] = useState(-300);
+  const [playerX, setPlayerX] = useState(0);
   const [playerDidWalkLeft, setPlayerDidWalkLeft] = useState(false);
   const [playerDidWalkRight, setPlayerDidWalkRight] = useState(false);
 
@@ -54,13 +56,8 @@ const MainPageContainer = styled.div`
   justify-content: center;
 `;
 
-// Вывести картинку (Добавить партикли и прозрачный свг сверху)
-// Анимировать фон+
-// Добавить передвижение+
-// Добавить подсказку "Найдено тотемов"
-// Добавить достижение
-// Заменить иконки
+// Заменить иконки (в тайтле)
+// Добавить метатеги
 // Выкатить z-index-ы в константы
-// Добавить логику вывода инфы
-// Добавить плашку с обучением
+// Пофиксить комменты
 // Выкатить на vps
