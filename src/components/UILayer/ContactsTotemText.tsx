@@ -1,5 +1,5 @@
 import { contacts } from "constants/contacts";
-import { playerSpeed } from "constants/player";
+import { playerRadius, playerSpeed } from "constants/player";
 import { TotemName, contactsTotem } from "constants/totems";
 import { useEffect } from "react";
 import styled from "styled-components";
@@ -20,8 +20,7 @@ const contactElementsList = contacts.map((contact) => (
 ));
 
 const ContactsTotemText: React.FC<ContactsTotemTextProps> = ({ playerX, handleVisitTotem }) => {
-  //Радиус Вынести в константу
-  const isDiplayTotemText = checkIsElementsCollide(-playerX * playerSpeed, contactsTotem.xPos, 100);
+  const isDiplayTotemText = checkIsElementsCollide(-playerX * playerSpeed, contactsTotem.xPos, playerRadius);
 
   useEffect(() => {
     if (isDiplayTotemText) handleVisitTotem(contactsTotem.name);

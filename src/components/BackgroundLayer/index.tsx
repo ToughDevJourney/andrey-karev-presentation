@@ -8,7 +8,7 @@ interface BackgroundLayerProps {
   playerX: number;
 }
 
-// NOTE: wrapping svg images with transparency in divs highly improves performance
+// NOTE: wrapped svg images with transparency in divs to highly improve its performance
 
 const BackgroundLayer: React.FC<BackgroundLayerProps> = ({ playerX }) => {
   return (

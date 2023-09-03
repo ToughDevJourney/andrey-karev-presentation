@@ -10,7 +10,7 @@ const DialogContainer: React.FC<DialogContainerProps> = ({ children, ...props })
 };
 
 const DialogContainerContainer = styled.div`
-  z-index: 10000;
+  z-index: ${({ theme }) => theme.zIndex.ui};
   position: absolute;
   top: 40px;
   min-width: 50vw;

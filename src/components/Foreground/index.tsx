@@ -25,12 +25,10 @@ const ForegroundLayerContainer = styled.div.attrs<{ $playerX: number }>(({ $play
   justify-content: center;
   position: fixed;
 
-  // Вынести в константу
-  z-index: 1000;
+  z-index: ${({ theme }) => theme.zIndex.foreground};
   height: 100vh;
 `;
 
-// возможно, стоит заменить это на константы
 const commonLandStyles = css`
   position: absolute;
   height: 100vh;
@@ -49,12 +47,3 @@ const LeftBorderSVG = styled(BaseLeftBorderSVG)`
 `;
 
 export default ForegroundLayer;
-
-// Вывести картинку
-// Не забыть про лианы
-// Добавить передвижение
-// Добавить логику вывода инфы
-// Добавить музыку и звуки
-// Выкатить на vps
-
-// Нет необходимости делать центрирование, потому что другие элементы все равно будут выводиться

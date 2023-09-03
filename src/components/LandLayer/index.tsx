@@ -29,7 +29,7 @@ const LandLayerContainer = styled.div.attrs<{ $playerX: number }>(({ $playerX })
   justify-content: center;
   position: fixed;
   bottom: 0;
-  z-index: 10;
+  z-index: ${({ theme }) => theme.zIndex.land};
   height: 780px;
 `;
 
@@ -54,12 +54,3 @@ const StatueImage = styled.img`
 `;
 
 export default LandLayer;
-
-// Вывести картинку
-// Не забыть про лианы
-// Добавить передвижение
-// Добавить логику вывода инфы
-// Добавить музыку и звуки
-// Выкатить на vps
-
-// Нет необходимости делать центрирование, потому что другие элементы все равно будут выводиться

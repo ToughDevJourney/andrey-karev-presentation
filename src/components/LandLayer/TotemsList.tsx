@@ -11,7 +11,6 @@ const TotemsList: React.FC<TotemsListProps> = () => {
 
 const Totem = styled.img<{ $xPos: number }>`
   position: absolute;
-  // Вынести в константу
   bottom: 134px;
 
   transform: translateX(${({ $xPos }) => $xPos}px);

@@ -1,4 +1,4 @@
-import { playerSpeed } from "constants/player";
+import { playerRadius, playerSpeed } from "constants/player";
 import { TotemName, techStackTotem } from "constants/totems";
 import { useEffect } from "react";
 import styled from "styled-components";
@@ -11,8 +11,7 @@ interface MyTechStackTotemTextProps {
 }
 
 const MyTechStackTotemText: React.FC<MyTechStackTotemTextProps> = ({ playerX, handleVisitTotem }) => {
-  //Радиус Вынести в константу
-  const isDiplayTotemText = checkIsElementsCollide(-playerX * playerSpeed, techStackTotem.xPos, 100);
+  const isDiplayTotemText = checkIsElementsCollide(-playerX * playerSpeed, techStackTotem.xPos, playerRadius);
 
   useEffect(() => {
     if (isDiplayTotemText) handleVisitTotem(techStackTotem.name);

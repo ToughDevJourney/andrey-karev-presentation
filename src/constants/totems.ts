@@ -40,3 +40,5 @@ export const totemsList: Totem[] = [aboutTotem, contactsTotem, experienceTotem, 
 export const leftTotemsNamesList = totemsList.reduce((acc, totem) => (totem.xPos < 0 ? [...acc, totem.name] : acc), []);
 
 export const rightTotemsNamesList = totemsList.reduce((acc, totem) => (totem.xPos >= 0 ? [...acc, totem.name] : acc), []);
+
+export const totemsNumber = totemsList.length;

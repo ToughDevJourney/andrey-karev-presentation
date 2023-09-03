@@ -19,8 +19,7 @@ const PlayerImage = styled.img`
   position: fixed;
   bottom: 112px;
 
-  // вынести z-index-ы в константы
-  z-index: 100;
+  z-index: ${({ theme }) => theme.zIndex.player};
 `;
 
 const FlippedPlayerImage = styled(PlayerImage)`
@@ -31,8 +30,3 @@ const FlippedPlayerImage = styled(PlayerImage)`
 `;
 
 export default PlayerLayer;
-
-// Вывести картинку
-// Добавить передвижение
-// Добавить логику вывода инфы
-// Выкатить на vps

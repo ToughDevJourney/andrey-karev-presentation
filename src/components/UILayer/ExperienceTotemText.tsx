@@ -1,4 +1,4 @@
-import { playerSpeed } from "constants/player";
+import { playerRadius, playerSpeed } from "constants/player";
 import { TotemName, experienceTotem } from "constants/totems";
 import { useEffect } from "react";
 import styled from "styled-components";
@@ -11,8 +11,7 @@ interface ExperienceTotemTextProps {
 }
 
 const ExperienceTotemText: React.FC<ExperienceTotemTextProps> = ({ playerX, handleVisitTotem }) => {
-  //Радиус Вынести в константу
-  const isDiplayTotemText = checkIsElementsCollide(-playerX * playerSpeed, experienceTotem.xPos, 100);
+  const isDiplayTotemText = checkIsElementsCollide(-playerX * playerSpeed, experienceTotem.xPos, playerRadius);
 
   useEffect(() => {
     if (isDiplayTotemText) handleVisitTotem(experienceTotem.name);

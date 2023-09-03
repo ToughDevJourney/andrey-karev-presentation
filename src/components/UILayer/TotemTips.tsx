@@ -1,5 +1,5 @@
 import { playerSpeed } from "constants/player";
-import { TotemName, techStackTotem } from "constants/totems";
+import { TotemName, techStackTotem, totemsNumber } from "constants/totems";
 import { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 import BaseDialogContainer from "uiKit/DialogContainer";
@@ -18,8 +18,7 @@ const TotemTips: React.FC<TotemTipsProps> = ({ visitedTotemsNumber, isOnlyAllLef
 
   const [isDisplayTotemTips, setIsDisplayTotemTips] = useState(false);
 
-  // в константу
-  const isFoundAllTotems = visitedTotemsNumber === 4;
+  const isFoundAllTotems = visitedTotemsNumber === totemsNumber;
 
   useEffect(() => {
     if (visitedTotemsNumber === 0) return;
@@ -65,14 +64,14 @@ const LeftArrow = styled.img`
   position: absolute;
   left: 70px;
   top: 70px;
-  z-index: 1000;
+  z-index: ${({ theme }) => theme.zIndex.foreground};
 `;
 
 const RightArrow = styled.img`
   position: absolute;
   right: 70px;
   top: 70px;
-  z-index: 1000;
+  z-index: ${({ theme }) => theme.zIndex.foreground};
 `;
 
 export default TotemTips;
