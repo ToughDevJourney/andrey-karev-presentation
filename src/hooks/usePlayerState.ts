@@ -28,7 +28,7 @@ const usePlayerState = () => {
     window.addEventListener("keyup", keyUpHandler);
   }, [keyDownHandler, keyUpHandler]);
 
-  return playerState;
+  return { playerState, movePlayerRight, movePlayerLeft, stopPlayerRight, stopPlayerLeft };
 };
 
 export default usePlayerState;

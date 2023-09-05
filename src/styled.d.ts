@@ -12,6 +12,7 @@ declare module "styled-components" {
       player: number;
       foreground: number;
       ui: number;
+      controls: number;
     };
   }
 }

@@ -7,10 +7,12 @@ import { useCallback, useEffect, useState } from "react";
 import useRequestAnimationFrame from "hooks/useRequestAnimationFrame";
 import usePlayerState, { PlayerStates } from "hooks/usePlayerState";
 import UILayer from "components/UILayer";
+import MobileControls from "components/MobileControls";
+import { isMobile } from "react-device-detect";
 
 const MainPage: React.FC = () => {
   const { animate, stopAnimation } = useRequestAnimationFrame();
-  const playerState = usePlayerState();
+  const { playerState, ...movementHandlers } = usePlayerState();
 
   const [playerX, setPlayerX] = useState(0);
   const [playerDidWalk, setPlayerDidWalk] = useState(false);
@@ -33,6 +35,7 @@ const MainPage: React.FC = () => {
 
   return (
     <MainPageContainer>
+      {isMobile && <MobileControls playerState={playerState} {...movementHandlers} />}
       <UILayer playerX={playerX} playerDidWalk={playerDidWalk} />
       <ForegroundLayer playerX={playerX} />
       <PlayerLayer playerState={playerState} />

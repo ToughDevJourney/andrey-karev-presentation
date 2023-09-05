@@ -1,6 +1,7 @@
 import { playerRadius, playerSpeed } from "constants/player";
 import { TotemName, techStackTotem } from "constants/totems";
 import { useEffect } from "react";
+import { isMobile } from "react-device-detect";
 import styled from "styled-components";
 import DialogContainer from "uiKit/DialogContainer";
 import { checkIsElementsCollide } from "utils/common";
@@ -22,7 +23,7 @@ const MyTechStackTotemText: React.FC<MyTechStackTotemTextProps> = ({ playerX, ha
   return (
     <DialogContainer>
       <MyTechStackTotemTextContainer>
-        <h1>MY TECH STACK</h1>
+        <TextHeader>MY TECH STACK</TextHeader>
         <TextInfoContainer>
           <p>Libraries and Frameworks: React / NextJS</p>
           <p>Web Development: SCSS / Styled Components / vanilla-extract / Tailwind / Bootstrap</p>
@@ -45,6 +46,10 @@ const MyTechStackTotemTextContainer = styled.div`
   flex-direction: column;
   gap: 24px;
   height: 100%;
+`;
+
+const TextHeader = styled.h1`
+  align-self: ${isMobile ? "center" : "left"};
 `;
 
 const TextInfoContainer = styled.div`

@@ -1,6 +1,7 @@
 import { playerRadius, playerSpeed } from "constants/player";
 import { TotemName, aboutTotem } from "constants/totems";
 import { useEffect } from "react";
+import { isBrowser, isMobile } from "react-device-detect";
 import styled from "styled-components";
 import DialogContainer from "uiKit/DialogContainer";
 import { checkIsElementsCollide } from "utils/common";
@@ -22,7 +23,7 @@ const AboutTotemText: React.FC<AboutTotemTextProps> = ({ playerX, handleVisitTot
   return (
     <DialogContainer>
       <AboutTotemTextContainer>
-        <h1>ABOUT ME</h1>
+        <TextHeader>ABOUT ME</TextHeader>
         <p>Hi! My name is Andrey (aka "Cool Guy to drink a Beer with"). I'm a Frontend Developer .</p>
         <p>I play HARD ROCK on guitar, piano and drums (But mostly songs my wife likes).</p>
         <p>I do Boxing, also tried Muai Thai and MMA. Would love to try Aikido, because I like its traditions.</p>
@@ -40,6 +41,10 @@ const AboutTotemTextContainer = styled.div`
   flex-direction: column;
   gap: 24px;
   height: 100%;
+`;
+
+const TextHeader = styled.h1`
+  align-self: ${isMobile ? "center" : "left"};
 `;
 
 export default AboutTotemText;

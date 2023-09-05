@@ -6,11 +6,12 @@ const theme: DefaultTheme = {
     success: "#00ff00",
   },
   zIndex: {
-    background: 1,
-    land: 10,
-    player: 100,
-    foreground: 1000,
-    ui: 10000,
+    background: 0,
+    land: 1,
+    player: 10,
+    foreground: 100,
+    ui: 1000,
+    controls: 10000,
   },
 };
 

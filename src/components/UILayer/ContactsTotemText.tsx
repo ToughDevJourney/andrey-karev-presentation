@@ -2,9 +2,11 @@ import { contacts } from "constants/contacts";
 import { playerRadius, playerSpeed } from "constants/player";
 import { TotemName, contactsTotem } from "constants/totems";
 import { useEffect } from "react";
+import { isMobile } from "react-device-detect";
 import styled from "styled-components";
 import DialogContainer from "uiKit/DialogContainer";
 import Link from "uiKit/ExternalLink";
+import LabeledLink from "uiKit/LabeledLink";
 import { checkIsElementsCollide } from "utils/common";
 
 interface ContactsTotemTextProps {
@@ -12,12 +14,7 @@ interface ContactsTotemTextProps {
   handleVisitTotem: (totemName: TotemName) => void;
 }
 
-const contactElementsList = contacts.map((contact) => (
-  <div key={contact.label}>
-    <span>{contact.label}: </span>
-    <Link href={contact.link}>{contact.displayName}</Link>
-  </div>
-));
+const contactElementsList = contacts.map((contact) => <LabeledLink key={contact.label} {...contact} />);
 
 const ContactsTotemText: React.FC<ContactsTotemTextProps> = ({ playerX, handleVisitTotem }) => {
   const isDiplayTotemText = checkIsElementsCollide(-playerX * playerSpeed, contactsTotem.xPos, playerRadius);
@@ -31,7 +28,7 @@ const ContactsTotemText: React.FC<ContactsTotemTextProps> = ({ playerX, handleVi
   return (
     <DialogContainer>
       <ContactsTotemTextContainer>
-        <h1>MY CONTACTS</h1>
+        <TextHeader>MY CONTACTS</TextHeader>
         <LinksContainer>{contactElementsList}</LinksContainer>
       </ContactsTotemTextContainer>
     </DialogContainer>
@@ -43,6 +40,10 @@ const ContactsTotemTextContainer = styled.div`
   flex-direction: column;
   gap: 24px;
   height: 100%;
+`;
+
+const TextHeader = styled.h1`
+  align-self: ${isMobile ? "center" : "left"};
 `;
 
 const LinksContainer = styled.div`

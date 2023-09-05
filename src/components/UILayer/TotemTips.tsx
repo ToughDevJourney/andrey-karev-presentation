@@ -4,6 +4,7 @@ import styled from "styled-components";
 import BaseDialogContainer from "uiKit/DialogContainer";
 import leftArrowImage from "assets/arrowLeft.gif";
 import rightArrowImage from "assets/arrowRight.gif";
+import { isMobile } from "react-device-detect";
 interface TotemTipsProps {
   visitedTotemsNumber: number;
   isOnlyAllLeftTotemsVisited: boolean;
@@ -30,7 +31,7 @@ const TotemTips: React.FC<TotemTipsProps> = ({ visitedTotemsNumber, isOnlyAllLef
 
   if (!isDisplayTotemTips && isOnlyAllRightTotemsVisited) return <LeftArrow src={leftArrowImage} alt="" />;
 
-  if (!isDisplayTotemTips) return;
+  if (!isDisplayTotemTips || isMobile) return;
 
   return (
     <DialogContainer>

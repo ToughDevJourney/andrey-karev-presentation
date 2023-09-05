@@ -1,3 +1,3 @@
-export const playerSpeed = 7;
+export const playerSpeed = 8;
 
 export const playerRadius = 100;

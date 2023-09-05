@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import styled from "styled-components";
 import DialogContainer from "uiKit/DialogContainer";
+import { isBrowser } from "react-device-detect";
 
 interface WelcomeTextProps {
   playerDidWalk: boolean;
@@ -21,8 +22,17 @@ const WelcomeText: React.FC<WelcomeTextProps> = ({ playerDidWalk, hideWelcomeTex
           <p>This is my presentation website, feel free to walk around</p>
         </TextInfoContainer>
         <TipsContainer>
-          <HiglightingTip $isHighlighted={playerDidWalk}>PRESS "A" TO WALK LEFT</HiglightingTip>
-          <HiglightingTip $isHighlighted={playerDidWalk}>PRESS "D" TO WALK RIGHT</HiglightingTip>
+          {isBrowser ? (
+            <>
+              <HiglightingTip $isHighlighted={playerDidWalk}>PRESS "A" TO WALK LEFT</HiglightingTip>
+              <HiglightingTip $isHighlighted={playerDidWalk}>PRESS "D" TO WALK RIGHT</HiglightingTip>
+            </>
+          ) : (
+            <>
+              <HiglightingTip $isHighlighted={playerDidWalk}>HOLD LEFT SCREEN SIDE TO WALK LEFT</HiglightingTip>
+              <HiglightingTip $isHighlighted={playerDidWalk}>HOLD RIGHT SCREEN SIDE TO WALK RIGHT</HiglightingTip>
+            </>
+          )}
         </TipsContainer>
       </WelcomeTextContainer>
     </DialogContainer>

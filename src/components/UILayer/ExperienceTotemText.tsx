@@ -1,6 +1,7 @@
 import { playerRadius, playerSpeed } from "constants/player";
 import { TotemName, experienceTotem } from "constants/totems";
 import { useEffect } from "react";
+import { isMobile } from "react-device-detect";
 import styled from "styled-components";
 import DialogContainer from "uiKit/DialogContainer";
 import { checkIsElementsCollide } from "utils/common";
@@ -22,7 +23,7 @@ const ExperienceTotemText: React.FC<ExperienceTotemTextProps> = ({ playerX, hand
   return (
     <DialogContainer>
       <ExperienceTotemTextContainer>
-        <h1>MY EXPERIENCE</h1>
+        <TextHeader>MY EXPERIENCE</TextHeader>
         <p>I have 4+ years experience with React.</p>
         <ExperienceTextWrapper>
           <ExperienceTextContainer>
@@ -53,6 +54,9 @@ const ExperienceTotemTextContainer = styled.div`
   height: 100%;
 `;
 
+const TextHeader = styled.h1`
+  align-self: ${isMobile ? "center" : "left"};
+`;
 const ExperienceTextWrapper = styled.div`
   display: flex;
   flex-direction: column;
