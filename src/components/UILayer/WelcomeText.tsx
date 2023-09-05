@@ -3,15 +3,14 @@ import styled from "styled-components";
 import DialogContainer from "uiKit/DialogContainer";
 
 interface WelcomeTextProps {
-  playerDidWalkLeft: boolean;
-  playerDidWalkRight: boolean;
+  playerDidWalk: boolean;
   hideWelcomeText: () => void;
 }
 
-const WelcomeText: React.FC<WelcomeTextProps> = ({ playerDidWalkLeft, playerDidWalkRight, hideWelcomeText }) => {
+const WelcomeText: React.FC<WelcomeTextProps> = ({ playerDidWalk, hideWelcomeText }) => {
   useEffect(() => {
-    if (playerDidWalkLeft && playerDidWalkRight) setTimeout(hideWelcomeText, 2000);
-  }, [hideWelcomeText, playerDidWalkLeft, playerDidWalkRight]);
+    if (playerDidWalk) setTimeout(hideWelcomeText, 2000);
+  }, [hideWelcomeText, playerDidWalk]);
 
   return (
     <DialogContainer>
@@ -22,8 +21,8 @@ const WelcomeText: React.FC<WelcomeTextProps> = ({ playerDidWalkLeft, playerDidW
           <p>This is my presentation website, feel free to walk around</p>
         </TextInfoContainer>
         <TipsContainer>
-          <HiglightingTip $isHighlighted={playerDidWalkLeft}>PRESS "A" TO WALK LEFT</HiglightingTip>
-          <HiglightingTip $isHighlighted={playerDidWalkRight}>PRESS "D" TO WALK RIGHT</HiglightingTip>
+          <HiglightingTip $isHighlighted={playerDidWalk}>PRESS "A" TO WALK LEFT</HiglightingTip>
+          <HiglightingTip $isHighlighted={playerDidWalk}>PRESS "D" TO WALK RIGHT</HiglightingTip>
         </TipsContainer>
       </WelcomeTextContainer>
     </DialogContainer>

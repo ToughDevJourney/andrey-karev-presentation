@@ -7,29 +7,22 @@ import { useCallback, useEffect, useState } from "react";
 import useRequestAnimationFrame from "hooks/useRequestAnimationFrame";
 import usePlayerState, { PlayerStates } from "hooks/usePlayerState";
 import UILayer from "components/UILayer";
-import useAchievements from "hooks/useAchievements";
 
 const MainPage: React.FC = () => {
   const { animate, stopAnimation } = useRequestAnimationFrame();
   const playerState = usePlayerState();
-  const abc = useAchievements();
 
   const [playerX, setPlayerX] = useState(0);
-  const [playerDidWalkLeft, setPlayerDidWalkLeft] = useState(false);
-  const [playerDidWalkRight, setPlayerDidWalkRight] = useState(false);
+  const [playerDidWalk, setPlayerDidWalk] = useState(false);
 
   const handlePlayerMovement = useCallback(
     (playerState: PlayerStates) => {
       stopAnimation();
 
-      if (playerState === "moveLeft") {
-        setPlayerDidWalkLeft(true);
-        animate(() => setPlayerX((oldPlayerX) => (oldPlayerX <= 300 ? oldPlayerX + 1 : oldPlayerX)));
-      }
-      if (playerState === "moveRight") {
-        setPlayerDidWalkRight(true);
-        animate(() => setPlayerX((oldPlayerX) => (oldPlayerX >= -300 ? oldPlayerX - 1 : oldPlayerX)));
-      }
+      if (playerState === "moveLeft" || playerState === "moveRight") setPlayerDidWalk(true);
+
+      if (playerState === "moveLeft") animate(() => setPlayerX((oldPlayerX) => (oldPlayerX <= 300 ? oldPlayerX + 1 : oldPlayerX)));
+      if (playerState === "moveRight") animate(() => setPlayerX((oldPlayerX) => (oldPlayerX >= -300 ? oldPlayerX - 1 : oldPlayerX)));
     },
     [animate, stopAnimation],
   );
@@ -40,7 +33,7 @@ const MainPage: React.FC = () => {
 
   return (
     <MainPageContainer>
-      <UILayer playerX={playerX} playerDidWalkLeft={playerDidWalkLeft} playerDidWalkRight={playerDidWalkRight} />
+      <UILayer playerX={playerX} playerDidWalk={playerDidWalk} />
       <ForegroundLayer playerX={playerX} />
       <PlayerLayer playerState={playerState} />
       <LandLayer playerX={playerX} />
@@ -55,7 +48,3 @@ const MainPageContainer = styled.div`
   display: flex;
   justify-content: center;
 `;
-
-// Заменить иконки (в тайтле)
-// Добавить метатеги
-// Выкатить на vps

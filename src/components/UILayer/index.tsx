@@ -9,23 +9,15 @@ import TotemTips from "./TotemTips";
 
 interface UILayerProps {
   playerX: number;
-  playerDidWalkLeft: boolean;
-  playerDidWalkRight: boolean;
+  playerDidWalk: boolean;
 }
 
-const UILayer: React.FC<UILayerProps> = ({ playerX, playerDidWalkLeft, playerDidWalkRight }) => {
+const UILayer: React.FC<UILayerProps> = ({ playerX, playerDidWalk }) => {
   const { visitedTotemsNumber, isOnlyAllLeftTotemsVisited, isOnlyAllRightTotemsVisited, handleVisitTotem } = useAchievements();
 
   const [isShowWelcomeText, setIsShowWelcomeText] = useState(true);
 
-  if (isShowWelcomeText)
-    return (
-      <WelcomeText
-        playerDidWalkLeft={playerDidWalkLeft}
-        playerDidWalkRight={playerDidWalkRight}
-        hideWelcomeText={() => setIsShowWelcomeText(false)}
-      />
-    );
+  if (isShowWelcomeText) return <WelcomeText playerDidWalk={playerDidWalk} hideWelcomeText={() => setIsShowWelcomeText(false)} />;
 
   return (
     <>

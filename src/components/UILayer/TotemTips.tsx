@@ -1,12 +1,9 @@
-import { playerSpeed } from "constants/player";
-import { TotemName, techStackTotem, totemsNumber } from "constants/totems";
+import { totemsNumber } from "constants/totems";
 import { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 import BaseDialogContainer from "uiKit/DialogContainer";
 import leftArrowImage from "assets/arrowLeft.gif";
 import rightArrowImage from "assets/arrowRight.gif";
-import { checkIsElementsCollide } from "utils/common";
-
 interface TotemTipsProps {
   visitedTotemsNumber: number;
   isOnlyAllLeftTotemsVisited: boolean;
@@ -26,7 +23,7 @@ const TotemTips: React.FC<TotemTipsProps> = ({ visitedTotemsNumber, isOnlyAllLef
     setIsDisplayTotemTips(true);
     clearTimeout(timeoutRef.current);
 
-    timeoutRef.current = setTimeout(() => setIsDisplayTotemTips(false), 5000);
+    timeoutRef.current = setTimeout(() => setIsDisplayTotemTips(false), 4000);
   }, [visitedTotemsNumber]);
 
   if (!isDisplayTotemTips && isOnlyAllLeftTotemsVisited) return <RightArrow src={rightArrowImage} alt="" />;
