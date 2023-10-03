@@ -5,7 +5,6 @@ import { useEffect } from "react";
 import { isMobile } from "react-device-detect";
 import styled from "styled-components";
 import DialogContainer from "uiKit/DialogContainer";
-import Link from "uiKit/ExternalLink";
 import LabeledLink from "uiKit/LabeledLink";
 import { checkIsElementsCollide } from "utils/common";
 

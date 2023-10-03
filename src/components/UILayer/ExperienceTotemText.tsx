@@ -27,7 +27,7 @@ const ExperienceTotemText: React.FC<ExperienceTotemTextProps> = ({ playerX, hand
         <p>I have 4+ years experience with React.</p>
         <ExperienceTextWrapper>
           <ExperienceTextContainer>
-            <h4>JANUARY 2023 — JULY 2023</h4>
+            <h4>JANUARY 2023 — SEPTEMBER 2023</h4>
             <p>Role: Frontend Developer</p>
             <p>Project: A startup company. Creation of a streaming platform with the possibility of monetization through cryptocurrency.</p>
           </ExperienceTextContainer>
